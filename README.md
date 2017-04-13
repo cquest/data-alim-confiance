@@ -7,7 +7,7 @@ Les données sont publiées sous Licence Ouverte 1.0 sur le site https://dgal.op
 
 ## Archivage
 
-La récupération des données est en principe quotidienne.
+La récupération des données est en principe quotidienne (à 8h00 du matin).
 
 Les données sont triées par n° SIRET pour permettre une comparaison entre versions.
 
