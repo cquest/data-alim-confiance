@@ -3,7 +3,7 @@ Archive des données Opendata alim'confiance
 
 ## Licence
 
-Les données sont publiées sous Licence Ouverte 1.0 sur le site https://dgal.opendatasoft.com
+Les données sont publiées sous Licence Ouverte sur le site https://dgal.opendatasoft.com
 
 ## Archivage
 
