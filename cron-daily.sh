@@ -14,7 +14,7 @@ csvcut -d ';' -c APP_Libelle_activite_etablissement,APP_Libelle_etablissement,od
 git commit -a -m "$d"
 
 
-. ~/.keychain/$HOSTNAME-sh
+. ~/.keychain/cquest-Precision-WorkStation-T7500-sh
 
 git push
 
