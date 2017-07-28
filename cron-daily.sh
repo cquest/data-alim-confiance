@@ -8,7 +8,7 @@ curl -s 'https://dgal.opendatasoft.com/explore/dataset/export_alimconfiance/down
 csvcut -d ';' -c APP_Libelle_activite_etablissement,APP_Libelle_etablissement,ods_adresse,Code_postal,Libelle_commune,Libelle_commune,Date_inspection,Synthese_eval_sanit,Agrement,geores,ods_adresse,filtre,Numero_inspection,SIRET export_alimconfiance_$d.csv | csvsort -c SIRET,Numero_inspection > export_alimconfiance.csv
 
 # ajout au fichier compressé d'archive
-7z u exports_alim_confiance.7z export_alimconfiance_*.csv
+7z u exports_alim_confiance.7z export_alimconfiance_$d.csv
 
 # commit git + push sur github
 git commit -a -m "$d"
