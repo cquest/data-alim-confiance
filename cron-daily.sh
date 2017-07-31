@@ -22,8 +22,7 @@ git push
 rsync exports_alim_confiance.7z root@sc1.cquest.org:/var/www/html/alim_confiance/ -a
 
 # envoi vers OpenEventDatabase des nouveaux contrôles
-. /home/cquest/.virtualenvs/oedb/bin/
-python dgal2oedb.py export_alimconfiance_$d.csv
+~/.virtualenvs/oedb/bin/python dgal2oedb.py export_alimconfiance_$d.csv
 
 # on range le fichier pour archive...
 mv export_alimconfiance_$d.csv exports/
