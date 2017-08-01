@@ -66,7 +66,7 @@ with open(sys.argv[1]) as csv_file:
             event = json.loads(r.text)
             if 'duplicate' in event:
                 event['id']=event['duplicate']
-            print(r.text)
+            print(controle['Numero_inspection'],r.text)
             if last is not None:
                 # mise à jour de l'ancien contrôle pour lien avec le nouveau
                 old = dict(properties=dict(next=event['id'], next_url=api+'/event/'+event['id']))
