@@ -19,7 +19,7 @@ git commit -a -m "$d"
 git push
 
 # envoi sur scaleway
-rsync exports_alim_confiance.7z root@sc1.cquest.org:/var/www/html/alim_confiance/ -a
+rsync exports_alim_confiance.7z root@data.cquest.org:/var/www/html/data/alim_confiance/ -a
 
 # envoi vers OpenEventDatabase des nouveaux contrôles
 ~/.virtualenvs/oedb/bin/python dgal2oedb.py export_alimconfiance_$d.csv
