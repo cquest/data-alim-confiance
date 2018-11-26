@@ -26,4 +26,4 @@ cd -
 rsync exports* root@data.cquest.org:/var/www/html/data/alim_confiance/ -az
 
 # envoi vers OpenEventDatabase des nouveaux contrôles
-~/.virtualenvs/oedb/bin/python dgal2oedb.py export_alimconfiance_$d.csv
+~/.virtualenvs/oedb/bin/python dgal2oedb.py exports/export_alimconfiance_$d.csv
