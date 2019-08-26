@@ -1,5 +1,6 @@
 # date courante
 d=`date +%Y-%m-%d`
+YEAR=$(date +%Y)
 
 # récupération fichier du jour
 curl -sL 'https://dgal.opendatasoft.com/explore/dataset/export_alimconfiance/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true' > export_alimconfiance_$d.csv
@@ -18,12 +19,12 @@ git push
 mv export_alimconfiance_$d.csv exports/
 
 cd exports
-# ajout au fichier compressé d'archive
-7z u ../exports_alim_confiance.7z *.csv
+# ajout au fichier compressé d'archives de l'année
+7z u ../exports_alim_confiance_$YEAR.7z *.csv
 cd -
 
-# envoi sur scaleway
-rsync exports* root@data.cquest.org:/var/www/html/data/alim_confiance/ -az
+# envoi sur data.cquest.org
+rsync exports* root@192.168.0.72:/local-zfs/opendatarchives/data.cquest.org/alim_confiance/ -az
 
 # envoi vers OpenEventDatabase des nouveaux contrôles
 ~/.virtualenvs/oedb/bin/python dgal2oedb.py exports/export_alimconfiance_$d.csv
