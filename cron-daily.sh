@@ -19,8 +19,9 @@ git push
 mv export_alimconfiance_$d.csv exports/
 
 cd exports
-# ajout au fichier compressé d'archives de l'année
-7z u ../exports_alim_confiance_$YEAR.7z *.csv
+# re-génération de l'archives de l'année
+rm -f ../exports_alim_confiance_$YEAR.7z
+7z a ../exports_alim_confiance_$YEAR.7z *$YEAR*.csv
 cd -
 
 # envoi sur data.cquest.org
