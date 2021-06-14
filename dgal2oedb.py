@@ -40,7 +40,7 @@ with open(sys.argv[1]) as csv_file:
         e['type'] = 'observed'
         e['source'] = 'https://www.data.gouv.fr/fr/datasets/5593aab9c751df35d8a453ba'
         e['source:id'] = controle['Numero_inspection']
-        latlon = controle['geores'].replace(',','').split(' ')
+        latlon = controle['geores'].replace(',',' ').split(' ')
         latlon[0] = float(latlon[0]+'0')
         if len(latlon)>1:
             latlon[1] = float(latlon[1]+'0')
@@ -63,14 +63,20 @@ with open(sys.argv[1]) as csv_file:
                 e['previous_url'] = api+'/event/'+last[0]
             # on ajoute le nouveau contrôle
             r = requests.post(api+'/event', data = json.dumps(g))
-            event = json.loads(r.text)
-            if 'duplicate' in event:
-                event['id']=event['duplicate']
-            print(controle['Numero_inspection'],r.text)
-            if last is not None:
-                # mise à jour de l'ancien contrôle pour lien avec le nouveau
-                old = dict(properties=dict(next=event['id'], next_url=api+'/event/'+event['id']))
-            db.execute("INSERT INTO events VALUES ( ? , ? , ? , ? , ? )", (event['id'], controle['Numero_inspection'], controle['Date_inspection'], controle['SIRET'],''))
+            try:
+                event = json.loads(r.text)
+                if 'duplicate' in event:
+                    event['id'] = event['duplicate']
+                print(controle['Numero_inspection'], r.text)
+                if last is not None:
+                    # mise à jour de l'ancien contrôle pour lien avec le nouveau
+                    old = dict(properties=dict(
+                        next=event['id'], next_url=api+'/event/'+event['id']))
+                db.execute("INSERT INTO events VALUES ( ? , ? , ? , ? , ? )", (
+                    event['id'], controle['Numero_inspection'], controle['Date_inspection'], controle['SIRET'], ''))
+            except:
+                print(g)
+                pass
 
         sql.commit()
 

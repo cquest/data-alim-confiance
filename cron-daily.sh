@@ -11,7 +11,7 @@ csvcut -d ';' -c APP_Libelle_activite_etablissement,APP_Libelle_etablissement,Ad
 # commit git + push sur github
 git commit -a -m "$d"
 
-. ~/.keychain/cquest-Precision-WorkStation-T7500-sh
+. ~/.keychain/$HOSTNAME-sh
 
 git push
 
@@ -25,7 +25,7 @@ rm -f ../exports_alim_confiance_$YEAR.7z
 cd -
 
 # envoi sur data.cquest.org
-rsync exports* root@192.168.0.72:/local-zfs/opendatarchives/data.cquest.org/alim_confiance/ -az
+rsync exports* /mnt/opendatarchives/data.cquest.org/alim_confiance/ -azv
 
 # envoi vers OpenEventDatabase des nouveaux contrôles
 ~/.virtualenvs/oedb/bin/python dgal2oedb.py exports/export_alimconfiance_$d.csv
